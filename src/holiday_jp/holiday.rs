@@ -6,9 +6,9 @@ pub struct Holiday {
 }
 
 impl Holiday {
-    pub fn new(name: String, date: Date<Local>) -> Self {
+    pub fn new(name: &str, date: Date<Local>) -> Self {
         Holiday {
-            name: name,
+            name: name.to_string(),
             date: date,
         }
     }

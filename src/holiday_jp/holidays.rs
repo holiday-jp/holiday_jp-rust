@@ -22,7 +22,7 @@ impl Holidays {
                 .datetime_from_str(&(key.clone() + " 00:00:00"), "%Y-%m-%d %H:%M:%S")
                 .unwrap()
                 .date();
-            let name = value.as_str().unwrap().to_string();
+            let name = value.as_str().unwrap();
 
             let holiday = Holiday::new(name, date);
 
