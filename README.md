@@ -9,7 +9,7 @@ Get holidays in Japan.
 
 ```
 [dependencies]
-holiday_jp = { git = "https://github.com/camelmasa/holiday_jp-rust", branch = "0.1.0" }
+holiday_jp = { git = "https://github.com/camelmasa/holiday_jp-rust", branch = "0.1.1" }
 ```
 
 Already [holiday_jp](https://lib.rs/crates/holiday_jp) crate was reserved.
@@ -22,7 +22,7 @@ We need to specify github repository for now.
 use chrono::{Local, TimeZone};
 use holiday_jp::HolidayJp;
 
-fn main() {   
+fn main() {
     let holidays = HolidayJp::between(Local.ymd(2010, 9, 14), Local.ymd(2010, 9, 21));
     holidays.first().unwrap().name; // 敬老の日
     HolidayJp::is_holiday(Local.ymd(2016, 8, 11)); // true
