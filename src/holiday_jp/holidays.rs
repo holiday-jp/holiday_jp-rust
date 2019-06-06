@@ -9,13 +9,11 @@ pub struct Holidays {
 
 impl Holidays {
     pub fn new() -> Self {
-        // FIXME: don't use unwrap
         const HOLIDAYS_STRING: &str = include_str!("../../holidays.yml");
         let docs = YamlLoader::load_from_str(HOLIDAYS_STRING).unwrap();
 
         let mut holidays = HashMap::new();
 
-        // FIXME: don't use unwrap
         for (key, value) in docs[0].as_hash().unwrap().iter() {
             let key = key.as_str().unwrap().to_string();
             let date = Local
