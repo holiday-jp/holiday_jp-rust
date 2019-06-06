@@ -1,5 +1,5 @@
-use super::holiday::Holiday;
-use super::holidays::Holidays;
+use super::Holiday;
+use super::Holidays;
 use chrono::{Date, Local};
 
 lazy_static! {
