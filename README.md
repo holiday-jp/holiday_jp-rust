@@ -1,5 +1,7 @@
 # holiday_jp-rust
 
+[![Build Status](https://travis-ci.org/camelmasa/holiday_jp-rust.svg?branch=master)](https://travis-ci.org/camelmasa/holiday_jp-rust)
+
 Get holidays in Japan.
 
 
