@@ -17,7 +17,7 @@ impl Holidays {
         for (key, value) in docs[0].as_hash().unwrap().iter() {
             let key = key.as_str().unwrap().to_string();
             let date = Local
-                .datetime_from_str(&(key.clone() + " 00:00:00"), "%Y-%m-%d %H:%M:%S")
+                .datetime_from_str(&(key.to_string() + " 00:00:00"), "%Y-%m-%d %H:%M:%S")
                 .unwrap()
                 .date();
             let name = value.as_str().unwrap();
