@@ -1,6 +1,6 @@
 # holiday_jp-rust
 
-[![Build Status](https://travis-ci.org/camelmasa/holiday_jp-rust.svg?branch=master)](https://travis-ci.org/camelmasa/holiday_jp-rust)
+[![Build Status](https://travis-ci.org/holiday-jp/holiday_jp-rust.svg?branch=master)](https://travis-ci.org/holiday-jp/holiday_jp-rust)
 
 Get holidays in Japan.
 
@@ -9,7 +9,7 @@ Get holidays in Japan.
 
 ```
 [dependencies]
-holiday_jp = { git = "https://github.com/camelmasa/holiday_jp-rust", branch = "0.2.0" }
+holiday_jp = { git = "https://github.com/holiday-jp/holiday_jp-rust", branch = "0.2.0" }
 time = "0.2.26
 ```
 
@@ -37,6 +37,6 @@ fn main() {
 
 ## Difference of original [holiday_jp](https://lib.rs/crates/holiday_jp) crate
 
-- Original crate fetchs holidays from [Google Calendar](https://github.com/atsushi130/holiday-jp/blob/master/src/holiday_jp/holiday_service.rs#L49-L53). This crate fetchs holidays from [Yaml file](https://github.com/camelmasa/holiday_jp-rust/blob/master/holidays.yml). It uses [Japanese holiday datasets](https://github.com/holiday-jp/holiday_jp).
+- Original crate fetchs holidays from [Google Calendar](https://github.com/atsushi130/holiday-jp/blob/master/src/holiday_jp/holiday_service.rs#L49-L53). This crate fetchs holidays from [Yaml file](https://github.com/holiday-jp/holiday_jp/blob/master/holidays.yml). It uses [Japanese holiday datasets](https://github.com/holiday-jp/holiday_jp).
 - Original crate returns `true` if [Saturday and Sunday](https://github.com/atsushi130/holiday-jp/blob/master/src/holiday_jp/holiday_service.rs#L25-L28). This crate returns `false`.
 - This crate has `HolidayJp::is_holiday` and `HolidayJp::between` methods. Those are same method names with [holiday-jp_ruby](https://github.com/holiday-jp/holiday_jp-ruby).
