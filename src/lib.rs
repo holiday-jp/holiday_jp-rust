@@ -1,6 +1,5 @@
 #[macro_use]
 extern crate lazy_static;
-extern crate chrono;
 extern crate yaml_rust;
 
 pub mod holiday_jp;
