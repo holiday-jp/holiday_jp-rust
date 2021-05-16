@@ -19,13 +19,17 @@ We need to specify github repository for now.
 ## Usage
 
 ```rust
-use chrono::{Local, TimeZone};
 use holiday_jp::HolidayJp;
+use time::Date;
 
 fn main() {
-    let holidays = HolidayJp::between(Local.ymd(2010, 9, 14), Local.ymd(2010, 9, 21));
+    let from_date = Date::try_from_ymd(2010, 9, 14).unwrap();
+    let to_date   = Date::try_from_ymd(2010, 9, 21).unwrap();
+    let holidays  = HolidayJp::between(from_date, to_date);
     holidays.first().unwrap().name; // 敬老の日
-    HolidayJp::is_holiday(Local.ymd(2016, 8, 11)); // true
+
+    let date = Date::try_from_ymd(2016, 8, 11).unwrap();
+    HolidayJp::is_holiday(date); // true
 }
 ```
 
