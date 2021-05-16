@@ -9,7 +9,8 @@ Get holidays in Japan.
 
 ```
 [dependencies]
-holiday_jp = { git = "https://github.com/camelmasa/holiday_jp-rust", branch = "0.1.1" }
+holiday_jp = { git = "https://github.com/camelmasa/holiday_jp-rust", branch = "0.2.0" }
+time = "0.2.26
 ```
 
 Already [holiday_jp](https://lib.rs/crates/holiday_jp) crate was reserved.
