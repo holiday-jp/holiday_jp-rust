@@ -1,6 +1,6 @@
-use chrono::{Date, Datelike, Local};
 use std::collections::HashMap;
 use std::convert::TryFrom;
+use time::Date;
 
 lazy_static! {
     static ref EN_HOLIDAY_NAMES: HashMap<&'static str, &'static str> = {
@@ -48,14 +48,14 @@ lazy_static! {
 }
 
 pub struct Holiday {
-    pub date: Date<Local>,
+    pub date: Date,
     pub name: String,
 }
 
 impl Holiday {
     const WDAY_NAMES: [&'static str; 7] = ["日", "月", "火", "水", "木", "金", "土"];
 
-    pub fn new(name: &str, date: Date<Local>) -> Self {
+    pub fn new(name: &str, date: Date) -> Self {
         Holiday {
             name: name.to_string(),
             date: date,
@@ -67,8 +67,8 @@ impl Holiday {
     }
 
     pub fn wday_name(&self) -> String {
-        let wday = self.date.weekday();
-        let wday_usize = usize::try_from(wday.num_days_from_sunday()).unwrap();
+        let wday = self.date.weekday().number_days_from_sunday();
+        let wday_usize = usize::try_from(wday).unwrap();
 
         Self::WDAY_NAMES[wday_usize].to_string()
     }
@@ -77,18 +77,20 @@ impl Holiday {
 #[cfg(test)]
 mod tests {
     use super::Holiday;
-    use chrono::{Local, TimeZone};
+    use time::Date;
 
     #[test]
     fn name_en() {
-        let holiday = Holiday::new("元日", Local.ymd(1970, 1, 1));
+        let date = Date::try_from_ymd(1970, 1, 1).unwrap();
+        let holiday = Holiday::new("元日", date);
 
         assert_eq!(holiday.name_en(), "New Year's Day");
     }
 
     #[test]
     fn wday_name() {
-        let holiday = Holiday::new("元日", Local.ymd(1970, 1, 1));
+        let date = Date::try_from_ymd(1970, 1, 1).unwrap();
+        let holiday = Holiday::new("元日", date);
 
         assert_eq!(holiday.wday_name(), "木");
     }
