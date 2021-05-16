@@ -22,7 +22,7 @@ impl Holidays {
             holidays.insert(key, holiday);
         }
 
-        Holidays { holidays: holidays }
+        Holidays { holidays }
     }
 
     pub fn is_holiday(&self, date: Date) -> bool {
