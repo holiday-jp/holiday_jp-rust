@@ -9,7 +9,7 @@ pub struct Holidays {
 
 impl Holidays {
     pub fn new() -> Self {
-        const HOLIDAYS_STRING: &str = include_str!("../holidays.yml");
+        const HOLIDAYS_STRING: &str = include_str!("../holiday_jp/holidays.yml");
         let docs = YamlLoader::load_from_str(HOLIDAYS_STRING).unwrap();
 
         let mut holidays = HashMap::new();
