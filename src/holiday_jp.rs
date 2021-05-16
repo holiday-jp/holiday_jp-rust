@@ -1,6 +1,6 @@
 use super::Holiday;
 use super::Holidays;
-use chrono::{Date, Local};
+use time::Date;
 
 lazy_static! {
     static ref HOLIDAYS: Holidays = Holidays::new();
@@ -9,7 +9,7 @@ lazy_static! {
 pub struct HolidayJp {}
 
 impl HolidayJp {
-    pub fn between(start: Date<Local>, last: Date<Local>) -> Vec<&'static Holiday> {
+    pub fn between(start: Date, last: Date) -> Vec<&'static Holiday> {
         HOLIDAYS
             .holidays
             .iter()
@@ -18,7 +18,7 @@ impl HolidayJp {
             .collect()
     }
 
-    pub fn is_holiday(date: Date<Local>) -> bool {
+    pub fn is_holiday(date: Date) -> bool {
         HOLIDAYS.is_holiday(date)
     }
 }
@@ -26,17 +26,21 @@ impl HolidayJp {
 #[cfg(test)]
 mod tests {
     use super::HolidayJp;
-    use chrono::{Local, TimeZone};
+    use time::Date;
 
     #[test]
     fn between() {
-        let holidays = HolidayJp::between(Local.ymd(2010, 9, 14), Local.ymd(2010, 9, 21));
+        let from_date = Date::try_from_ymd(2010, 9, 14).unwrap();
+        let to_date = Date::try_from_ymd(2010, 9, 21).unwrap();
+        let holidays = HolidayJp::between(from_date, to_date);
 
         assert_eq!(holidays.first().unwrap().name, "敬老の日");
     }
 
     #[test]
     fn is_holiday() {
-        assert!(HolidayJp::is_holiday(Local.ymd(2016, 8, 11)));
+        let date = Date::try_from_ymd(2016, 8, 11).unwrap();
+
+        assert!(HolidayJp::is_holiday(date));
     }
 }
