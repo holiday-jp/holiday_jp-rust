@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 
-use time::{Date, macros::format_description};
+use time::{macros::format_description, Date};
 use yaml_rust::YamlLoader;
 
 use super::holiday::Holiday;
