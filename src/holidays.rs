@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 
-use time::{macros::format_description, Date};
+use time::{Date, macros::format_description};
 use yaml_rust::YamlLoader;
 
 use super::holiday::Holiday;
@@ -33,5 +33,11 @@ impl Holidays {
                 .format(&format_description!("[year]-[month]-[day]"))
                 .unwrap(),
         )
+    }
+}
+
+impl Default for Holidays {
+    fn default() -> Self {
+        Self::new()
     }
 }
