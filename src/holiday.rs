@@ -58,7 +58,7 @@ impl Holiday {
     pub fn new(name: &str, date: Date) -> Self {
         Holiday {
             name: name.to_string(),
-            date: date,
+            date,
         }
     }
 
