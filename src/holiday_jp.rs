@@ -1,6 +1,7 @@
+use time::Date;
+
 use super::Holiday;
 use super::Holidays;
-use time::Date;
 
 lazy_static! {
     static ref HOLIDAYS: Holidays = Holidays::new();
@@ -25,13 +26,14 @@ impl HolidayJp {
 
 #[cfg(test)]
 mod tests {
+    use time::{Date, Month};
+
     use super::HolidayJp;
-    use time::Date;
 
     #[test]
     fn between() {
-        let from_date = Date::try_from_ymd(2010, 9, 14).unwrap();
-        let to_date = Date::try_from_ymd(2010, 9, 21).unwrap();
+        let from_date = Date::from_calendar_date(2010, Month::September, 14).unwrap();
+        let to_date = Date::from_calendar_date(2010, Month::September, 21).unwrap();
         let holidays = HolidayJp::between(from_date, to_date);
 
         assert_eq!(holidays.first().unwrap().name, "敬老の日");
@@ -39,7 +41,7 @@ mod tests {
 
     #[test]
     fn is_holiday() {
-        let date = Date::try_from_ymd(2016, 8, 11).unwrap();
+        let date = Date::from_calendar_date(2016, Month::August, 11).unwrap();
 
         assert!(HolidayJp::is_holiday(date));
     }

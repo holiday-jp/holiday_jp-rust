@@ -1,7 +1,9 @@
-use super::holiday::Holiday;
 use std::collections::HashMap;
+
+use time::{macros::format_description, Date};
 use yaml_rust::YamlLoader;
-use time::Date;
+
+use super::holiday::Holiday;
 
 pub struct Holidays {
     pub holidays: HashMap<String, Holiday>,
@@ -15,7 +17,7 @@ impl Holidays {
 
         for (key, value) in docs[0].as_hash().unwrap().iter() {
             let key = key.as_str().unwrap().to_string();
-            let date = Date::parse(key.to_string(), "%F").unwrap();
+            let date = Date::parse(&key, format_description!("[year]-[month]-[day]")).unwrap();
             let name = value.as_str().unwrap();
             let holiday = Holiday::new(name, date);
 
@@ -26,7 +28,10 @@ impl Holidays {
     }
 
     pub fn is_holiday(&self, date: Date) -> bool {
-        self.holidays
-            .contains_key(&date.format("%Y-%m-%d").to_string())
+        self.holidays.contains_key(
+            &date
+                .format(&format_description!("[year]-[month]-[day]"))
+                .unwrap(),
+        )
     }
 }
