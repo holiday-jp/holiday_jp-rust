@@ -32,6 +32,7 @@ fn main() {
 }
 ```
 
+See [`examples/basic.rs`](examples/basic.rs) and run it with `cargo run --example basic`.
 
 ## Difference of original [holiday_jp](https://lib.rs/crates/holiday_jp) crate
 
