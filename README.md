@@ -21,19 +21,18 @@ We need to specify github repository for now.
 
 ```rust
 use holiday_jp::HolidayJp;
-use time::Date;
+use time::{Date, Month};
 
 fn main() {
-    let from_date = Date::try_from_ymd(2010, 9, 14).unwrap();
-    let to_date   = Date::try_from_ymd(2010, 9, 21).unwrap();
-    let holidays  = HolidayJp::between(from_date, to_date);
-    holidays.first().unwrap().name; // 敬老の日
+    let from_date = Date::from_calendar_date(2010, Month::September, 14).unwrap();
+    let to_date = Date::from_calendar_date(2010, Month::September, 21).unwrap();
+    let holidays = HolidayJp::between(from_date, to_date); // 敬老の日
 
-    let date = Date::try_from_ymd(2016, 8, 11).unwrap();
-    HolidayJp::is_holiday(date); // true
+    let date = Date::from_calendar_date(2016, Month::August, 11).unwrap(); // true
 }
 ```
 
+See [`examples/basic.rs`](examples/basic.rs) and run it with `cargo run --example basic`.
 
 ## Difference of original [holiday_jp](https://lib.rs/crates/holiday_jp) crate
 

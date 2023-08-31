@@ -58,7 +58,7 @@ impl Holiday {
     pub fn new(name: &str, date: Date) -> Self {
         Holiday {
             name: name.to_string(),
-            date: date,
+            date,
         }
     }
 
@@ -77,11 +77,11 @@ impl Holiday {
 #[cfg(test)]
 mod tests {
     use super::Holiday;
-    use time::Date;
+    use time::{Date, Month};
 
     #[test]
     fn name_en() {
-        let date = Date::try_from_ymd(1970, 1, 1).unwrap();
+        let date = Date::from_calendar_date(1970, Month::January, 1).unwrap();
         let holiday = Holiday::new("元日", date);
 
         assert_eq!(holiday.name_en(), "New Year's Day");
@@ -89,7 +89,7 @@ mod tests {
 
     #[test]
     fn wday_name() {
-        let date = Date::try_from_ymd(1970, 1, 1).unwrap();
+        let date = Date::from_calendar_date(1970, Month::January, 1).unwrap();
         let holiday = Holiday::new("元日", date);
 
         assert_eq!(holiday.wday_name(), "木");
