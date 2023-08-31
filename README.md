@@ -9,8 +9,8 @@ Get holidays in Japan.
 
 ```
 [dependencies]
-holiday_jp = { git = "https://github.com/holiday-jp/holiday_jp-rust", branch = "0.2.0" }
-time = "0.2.26
+holiday_jp = { git = "https://github.com/holiday-jp/holiday_jp-rust", tag = "0.3.0" }
+time = "0.3.28"
 ```
 
 Already [holiday_jp](https://lib.rs/crates/holiday_jp) crate was reserved.
@@ -26,9 +26,11 @@ use time::{Date, Month};
 fn main() {
     let from_date = Date::from_calendar_date(2010, Month::September, 14).unwrap();
     let to_date = Date::from_calendar_date(2010, Month::September, 21).unwrap();
-    let holidays = HolidayJp::between(from_date, to_date); // 敬老の日
+    let holidays = HolidayJp::between(from_date, to_date);
+    println!("{}", holidays.first().unwrap().name); // 敬老の日
 
-    let date = Date::from_calendar_date(2016, Month::August, 11).unwrap(); // true
+    let date = Date::from_calendar_date(2016, Month::August, 11).unwrap();
+    println!("{}", HolidayJp::is_holiday(date)); // true
 }
 ```
 
